@@ -61,7 +61,7 @@ const LandingPage = ({ scrollToCandidate }: { scrollToCandidate: () => void }) =
             fill="url(#goldGradient)"
             filter="url(#goldShine)"
           >
-            Miss World 2025
+            Miss SriLanka 2025
           </text>
         </motion.svg>
 
