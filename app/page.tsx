@@ -11,7 +11,7 @@ export default function Home() {
 
   return (
     <AuroraBackground>
-      <div className="min-h-screen w-full">
+      <div className="min-h-screen w-full overflow-hidden">
         <LandingPage />
         <Search setSearchTerm={setSearchTerm} />
         <CandidateList searchTerm={searchTerm} />
