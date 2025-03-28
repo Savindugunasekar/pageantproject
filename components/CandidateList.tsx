@@ -30,7 +30,7 @@ const CandidateList: React.FC<CandidateListProps> = ({ searchTerm }) => {
           <Link
             href={`/candidates/${candidate.id}`}
             key={candidate.id}
-            className="relative group block p-2 h-full w-full"
+            className="relative group block p-2 w-full h-fit"
             onMouseEnter={() => setHoveredIndex(candidate.id)}
             onMouseLeave={() => setHoveredIndex(null)}
           >
@@ -39,7 +39,7 @@ const CandidateList: React.FC<CandidateListProps> = ({ searchTerm }) => {
               {hoveredIndex === candidate.id && (
                 <motion.span
                   key="hoverEffect"
-                  className="absolute bg-[#EBB866] inset-0 h-full w-full   block rounded-3xl"
+                  className="absolute bg-[#EBB866] inset-0 h-full w-full block rounded-3xl"
                   layoutId="hoverBackground"
                   initial={{ opacity: 0 }}
                   animate={{

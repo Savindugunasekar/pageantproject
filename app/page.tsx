@@ -4,16 +4,17 @@ import CandidateList from "@/components/CandidateList";
 import LandingPage from "@/components/LandingPage";
 import Search from "@/components/Search";
 import { AuroraBackground } from "@/components/ui/aurora-background"; 
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 export default function Home() {
   const [searchTerm, setSearchTerm] = useState<string>("");
+  const searchInputRef = useRef<HTMLInputElement>(null); // Ensure the correct type
 
   return (
     <AuroraBackground>
       <div className="min-h-screen w-full overflow-hidden">
-        <LandingPage />
-        <Search setSearchTerm={setSearchTerm} />
+        <LandingPage scrollToCandidate={() => searchInputRef.current?.scrollIntoView({ behavior: "smooth" })} />
+        <Search ref={searchInputRef} setSearchTerm={setSearchTerm} />
         <CandidateList searchTerm={searchTerm} />
       </div>
     </AuroraBackground>
