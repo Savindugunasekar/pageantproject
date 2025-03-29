@@ -26,7 +26,7 @@ const CandidateCard: React.FC<CandidateProps> = ({ name, image, age, number }) =
         <Image
           src={image}
           alt={name}
-          className="object-cover w-full h-80 rounded-t-2xl"
+          className="object-cover w-full md:h-72  xl:h-96 rounded-t-2xl"
         />
 
         {/* Gradient Overlay & Info */}
@@ -38,18 +38,10 @@ const CandidateCard: React.FC<CandidateProps> = ({ name, image, age, number }) =
           }}
         >
           {/* Name and Age with transition */}
-          <div className="relative  translate-y-[50px] group-hover:translate-y-[-20px] transition-all duration-300 ease-in-out">
-            <h1 className="text-lg font-semibold">{name}</h1>
-            <p className="text-sm">Age: {age}</p>
+          <div className="relative self-start text-left">
+            <h1 className="text-3xl md:text-xl font-bold">{name}</h1>
+            <p className="text-xl md:text-sm">Age: {age}</p>
           </div>
-
-          {/* Vote Now Button */}
-          <button
-            className="mt-2 px-6 py-2 text-white bg-gold rounded-full transition-all duration-300 ease-in-out translate-y-[100px] group-hover:translate-y-0"
-            style={{ backgroundColor: "#FFD700" }}
-          >
-            Vote Now
-          </button>
         </div>
       </div>
     </div>
