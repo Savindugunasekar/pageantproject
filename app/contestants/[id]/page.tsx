@@ -6,14 +6,16 @@ import { useState, useEffect } from "react";
 const ContestantPage = () => {
   return (
     <>
-      <div className="flex justify-center md:w-1/2 items-center">
-        <Image
-          src="/Miss Sri Lanka 2025.png" // Replace with actual image path
-          alt="Contestant"
-          width={400}
-          height={500}
-          className="rounded-lg"
-        />
+      <div className="flex justify-center pt-10">
+        <div className="flex justify-center md:w-1/2 items-center">
+          <Image
+            src="/Miss Sri Lanka 2025.png" // Replace with actual image path
+            alt="Contestant"
+            width={400}
+            height={500}
+            className="rounded-lg"
+          />
+        </div>
       </div>
       <div className="min-h-screen bg-gradient-to-b from-white to-yellow-200 flex justify-center items-center p-4">
         <div className="max-w-4xl w-full p-6 md:flex md:items-center">
@@ -26,8 +28,8 @@ const ContestantPage = () => {
               className="rounded-lg"
             />
           </div>
-
-          <div className="md:w-1/2 md:pl-6 text-center md:text-left mt-6 md:mt-0">
+          <div className="md:w-1/2 md:pl-6 text-center md:text-left mt-0">
+            {/* <div className="md:w-1/2 md:pl-6 text-center md:text-left mt-6 md:mt-0"> */}
             <h1 className="text-2xl font-bold">Sophia Martinez</h1>
             <p className="text-gray-600 font-semibold">
               Contestant No: <span className="font-bold">#C102</span>
