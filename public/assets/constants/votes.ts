@@ -1,0 +1,22 @@
+export const voteList = [
+    { "id": 1, "votes": 34, "spent": 2000 },
+    { "id": 2, "votes": 21, "spent": 1500 },
+    { "id": 3, "votes": 45, "spent": 3200 },
+    { "id": 4, "votes": 12, "spent": 900 },
+    { "id": 5, "votes": 67, "spent": 4500 },
+    { "id": 6, "votes": 23, "spent": 1750 },
+    { "id": 7, "votes": 39, "spent": 2800 },
+    { "id": 8, "votes": 56, "spent": 3800 },
+    { "id": 9, "votes": 18, "spent": 1200 },
+    { "id": 10, "votes": 49, "spent": 3100 },
+    { "id": 11, "votes": 30, "spent": 2100 },
+    { "id": 12, "votes": 41, "spent": 3300 },
+    { "id": 13, "votes": 27, "spent": 1900 },
+    { "id": 14, "votes": 35, "spent": 2500 },
+    { "id": 15, "votes": 62, "spent": 4300 },
+    { "id": 16, "votes": 14, "spent": 1000 },
+    { "id": 17, "votes": 53, "spent": 3700 },
+    { "id": 18, "votes": 29, "spent": 2000 },
+    { "id": 19, "votes": 47, "spent": 2900 },
+    { "id": 20, "votes": 38, "spent": 2600 }
+];

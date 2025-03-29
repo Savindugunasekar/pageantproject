@@ -3,7 +3,6 @@
 import CandidateList from "@/components/CandidateList";
 import LandingPage from "@/components/LandingPage";
 import Search from "@/components/Search";
-import { AuroraBackground } from "@/components/ui/aurora-background";
 import { useRef, useState } from "react";
 
 export default function Home() {

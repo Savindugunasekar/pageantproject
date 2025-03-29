@@ -97,6 +97,7 @@
 // export default LandingPage;
 "use client";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 const LandingPage = ({
   scrollToCandidate,
@@ -105,6 +106,22 @@ const LandingPage = ({
 }) => {
   return (
     <div className="relative w-full h-screen overflow-hidden flex items-center justify-center">
+      {/* Header */}
+      <div className="absolute top-3 left-0 w-full flex justify-center gap-36 items-center px-10 py-4 text-2xl font-bold z-10">
+        <Link
+          href="/"
+          className="text-yellow-300 hover:text-yellow-400 transition duration-300"
+        >
+          Home
+        </Link>
+        <Link
+          href="/leaderboard"
+          className="text-yellow-300 hover:text-yellow-400 transition duration-300"
+        >
+          Leaderboard
+        </Link>
+      </div>
+
       {/* Background Overlay */}
       <motion.div
         className="absolute top-0 left-0 w-full h-full bg-black"
@@ -189,7 +206,7 @@ const LandingPage = ({
         {/* Vote Button */}
         <motion.button
           onClick={scrollToCandidate}
-          className="mt-6 md:mx-36 w-[60%] self-center  px-8 py-4 text-lg font-semibold rounded-xl backdrop-blur-lg bg-white/10 border border-yellow-400 shadow-lg text-yellow-300 transition-all duration-300 hover:bg-white/20 hover:text-yellow-400 md:self-start"
+          className="mt-6 md:mx-36 w-[60%] self-center px-8 py-4 text-lg font-semibold rounded-xl backdrop-blur-lg bg-white/10 border border-yellow-400 shadow-lg text-yellow-300 transition-all duration-300 hover:bg-white/20 hover:text-yellow-400 md:self-start"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 2, ease: "easeOut" }}
