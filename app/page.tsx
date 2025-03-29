@@ -3,6 +3,8 @@
 import CandidateList from "@/components/CandidateList";
 import LandingPage from "@/components/LandingPage";
 import Search from "@/components/Search";
+
+
 import { useRef, useState } from "react";
 
 export default function Home() {
@@ -11,6 +13,7 @@ export default function Home() {
 
   return (
     <>
+    
       <LandingPage
         scrollToCandidate={() =>
           searchInputRef.current?.scrollIntoView({ behavior: "smooth" })

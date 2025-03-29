@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 const ContestantPage = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-white to-yellow-200  bg-fixed ">
-      <div className="flex justify-center pt-10">
+      <div className="flex justify-center pt-20">
         <div className="flex justify-center lg:w-1/2 items-center">
           <Image
             src="/Miss Sri Lanka 2025.png" // Replace with actual image path

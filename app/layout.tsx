@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { FloatingNav } from "@/components/ui/floating-navbar";
+import { NavItems } from "@/public/assets/constants/NavItems";
+import Footer from "@/components/Footer";
 
 
 
@@ -17,7 +20,9 @@ export default function RootLayout({
     <html lang="en">
       <body 
       >
+        <FloatingNav navItems={NavItems}/>
         {children}
+        <Footer/>
       </body>
     </html>
   );

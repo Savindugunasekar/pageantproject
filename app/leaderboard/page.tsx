@@ -36,10 +36,7 @@ const mockData = [
 const PageantLeaderboard = () => {
   return (
     <div className="min-h-screen w-full bg-gradient-to-b from-white to-yellow-200 px-6 flex justify-center">
-      <div className="w-full lg:max-w-[85%]">
-        <h2 className="text-3xl font-bold  text-center text-gray-800 mt-10 mb-10">
-          Leaderboard
-        </h2>
+      <div className="w-full lg:max-w-[85%] my-36">
         <Table className="bg-white shadow-lg rounded-2xl overflow-hidden mb-10">
           <TableHeader>
             <TableRow className="bg-yellow-500 text-white text-lg">

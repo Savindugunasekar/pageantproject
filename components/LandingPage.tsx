@@ -107,20 +107,7 @@ const LandingPage = ({
   return (
     <div className="relative w-full h-screen overflow-hidden flex items-center justify-center">
       {/* Header */}
-      <div className="absolute top-3 left-0 w-full flex justify-center gap-36 items-center px-10 py-4 text-2xl font-bold z-10">
-        <Link
-          href="/"
-          className="text-yellow-300 hover:text-yellow-400 transition duration-300"
-        >
-          Home
-        </Link>
-        <Link
-          href="/leaderboard"
-          className="text-yellow-300 hover:text-yellow-400 transition duration-300"
-        >
-          Leaderboard
-        </Link>
-      </div>
+  
 
       {/* Background Overlay */}
       <motion.div
