@@ -25,12 +25,12 @@ const CandidateList: React.FC<CandidateListProps> = ({ searchTerm }) => {
 
   return (
     <div className="w-full min-h-screen flex justify-center">
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 w-full max-w-[90%]">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 w-full max-w-[85%]">
         {filteredCandidates.map((candidate) => (
           <Link
-            href={`/candidates/${candidate.id}`}
+            href={`/contestants/${candidate.id}`}
             key={candidate.id}
-            className="relative group block p-2 h-full w-full"
+            className="relative group block p-2 w-full h-fit"
             onMouseEnter={() => setHoveredIndex(candidate.id)}
             onMouseLeave={() => setHoveredIndex(null)}
           >
@@ -39,7 +39,7 @@ const CandidateList: React.FC<CandidateListProps> = ({ searchTerm }) => {
               {hoveredIndex === candidate.id && (
                 <motion.span
                   key="hoverEffect"
-                  className="absolute bg-[#EBB866] inset-0 h-full w-full   block rounded-3xl"
+                  className="absolute bg-[#EBB866] inset-0 h-full w-full block rounded-3xl"
                   layoutId="hoverBackground"
                   initial={{ opacity: 0 }}
                   animate={{
