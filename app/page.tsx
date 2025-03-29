@@ -10,11 +10,21 @@ export default function Home() {
   const searchInputRef = useRef<HTMLInputElement>(null); // Ensure the correct type
 
   return (
+    <>
+      <LandingPage
+        scrollToCandidate={() =>
+          searchInputRef.current?.scrollIntoView({ behavior: "smooth" })
+        }
+      />
 
-      <div className="min-h-screen w-full overflow-hidden  bg-gradient-to-b from-white to-yellow-200">
-        <LandingPage scrollToCandidate={() => searchInputRef.current?.scrollIntoView({ behavior: "smooth" })} />
+      <div
+        className="min-h-screen w-full overflow-hidden bg-cover bg-center  bg-fixed"
+        style={{ backgroundImage: "url('/Angelina Jolie.svg')" }}
+      >
         <Search ref={searchInputRef} setSearchTerm={setSearchTerm} />
+
         <CandidateList searchTerm={searchTerm} />
       </div>
+    </>
   );
 }
