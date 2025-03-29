@@ -164,7 +164,7 @@ const CandidateList: React.FC<CandidateListProps> = ({ searchTerm }) => {
   );
 
   return (
-    <div className="w-full min-h-screen flex justify-center">
+    <div className="w-full mb-20 min-h-screen flex justify-center">
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 w-full max-w-[85%]">
         {filteredCandidates.map((candidate) => (
           <Link
