@@ -1,4 +1,4 @@
-import msworld from "../images/candidates/msworld.jpg";
+import msworld from "../../contestant-image-cropped.png";
 import { StaticImageData } from "next/image"; 
 
 export interface Candidate {
