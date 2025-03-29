@@ -1,15 +1,19 @@
+"use client"
 import {
-  Table,
-  TableHeader,
-  TableRow,
-  TableHead,
-  TableBody,
-  TableCell,
-} from "../../components/ui/table";
-import msworld from "../../public/contestant-image-cropped.png";
-import Image from "next/image";
+    Table,
+    TableHeader,
+    TableRow,
+    TableHead,
+    TableBody,
+    TableCell,
+  } from "../../components/ui/table";
+  import msworld from "../../public/contestant-image-cropped.png";
+  import Image from "next/image";
 
-const mockData = [
+  import { Button } from "@/components/ui/button";
+import { useState } from "react";
+  
+  const mockData = [
     { id: 1, image: msworld, name: "Emma Johnson", category: "Miss Elegance", votes: 320, moneySpent: 1500 },
     { id: 2, image: msworld, name: "Sophia Lee", category: "Miss Charm", votes: 280, moneySpent: 1300 },
     { id: 3, image: msworld, name: "Isabella Martinez", category: "Miss Talent", votes: 250, moneySpent: 1100 },
@@ -25,67 +29,87 @@ const mockData = [
     { id: 13, image: msworld, name: "Sofia Harris", category: "Miss Talent", votes: 230, moneySpent: 900 },
     { id: 14, image: msworld, name: "Chloe Martin", category: "Miss Beauty", votes: 340, moneySpent: 1500 },
     { id: 15, image: msworld, name: "Layla Thompson", category: "Miss Personality", votes: 360, moneySpent: 1600 },
-    { id: 16, image: msworld, name: "Lily Garcia", category: "Miss Elegance", votes: 310, moneySpent: 1400 },
-    { id: 17, image: msworld, name: "Aria Martinez", category: "Miss Charm", votes: 280, moneySpent: 1300 },
-    { id: 18, image: msworld, name: "Zoe Robinson", category: "Miss Talent", votes: 220, moneySpent: 850 },
-    { id: 19, image: msworld, name: "Stella Clark", category: "Miss Beauty", votes: 330, moneySpent: 1550 },
-    { id: 20, image: msworld, name: "Maya Lewis", category: "Miss Personality", votes: 380, moneySpent: 1700 },
   ];
   
-
-const PageantLeaderboard = () => {
-  return (
-    <div className="min-h-screen w-full bg-gradient-to-b from-white to-yellow-200 px-6 flex justify-center">
-      <div className="w-full lg:max-w-[85%] my-36">
-        <Table className="bg-white shadow-lg rounded-2xl overflow-hidden mb-10">
-          <TableHeader>
-            <TableRow className="bg-yellow-500 text-white text-lg">
-              <TableHead className="text-center">Position</TableHead>
-              <TableHead className="text-center">Image</TableHead>
-              <TableHead className="text-center">Name</TableHead>
-              <TableHead className="text-center">Category</TableHead>
-              <TableHead className="text-center">Votes</TableHead>
-              <TableHead className="text-center">Money Spent ($)</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {mockData.map((contestant,index) => (
-              <TableRow
-                key={contestant.id}
-                className="border-b hover:bg-gray-200 transition-all duration-200"
-              >
-                 {/* Position Column */}
-                 <TableCell className="font-semibold  text-lg lg:text-xl text-center">
-                 <span className="bg-yellow-500 text-white px-4 py-2 rounded-full">
-                    {index + 1}
-                  </span>
-                </TableCell>
-                <TableCell className="flex justify-center items-center">
-                  <Image
-                    src={contestant.image}
-                    alt={contestant.name}
-                    className="rounded-full w-12 h-12 md:w-16 md:h-16 lg:w-24 lg:h-24 object-cover"
-                  />
-                </TableCell>
-                <TableCell className="font-semibold text-lg lg:text-xl text-center">
-                  {contestant.name}
-                </TableCell>
-                <TableCell className="text-lg lg:text-xl text-center">
-                  {contestant.category}
-                </TableCell>
-                <TableCell className="text-center text-lg lg:text-xl">
-                  {contestant.votes}
-                </TableCell>
-                <TableCell className="text-center text-lg lg:text-xl">
-                  ${contestant.moneySpent}
-                </TableCell>
+  const ITEMS_PER_PAGE = 10;
+  
+  const PageantLeaderboard = () => {
+    const [currentPage, setCurrentPage] = useState(1);
+  
+    const totalPages = Math.ceil(mockData.length / ITEMS_PER_PAGE);
+    const displayedContestants = mockData.slice(
+      (currentPage - 1) * ITEMS_PER_PAGE,
+      currentPage * ITEMS_PER_PAGE
+    );
+  
+    return (
+      <div className="min-h-screen w-full bg-gradient-to-b from-white to-yellow-200 px-6 flex flex-col items-center">
+        <div className="w-full lg:max-w-[85%] my-36">
+          <Table className="bg-white shadow-lg rounded-2xl overflow-hidden mb-10">
+            <TableHeader>
+              <TableRow className="bg-yellow-500 text-white text-lg">
+                <TableHead className="text-center">Position</TableHead>
+                <TableHead className="text-center">Image</TableHead>
+                <TableHead className="text-center">Name</TableHead>
+                <TableHead className="text-center">Category</TableHead>
+                <TableHead className="text-center">Votes</TableHead>
+                <TableHead className="text-center">Money Spent ($)</TableHead>
               </TableRow>
-            ))}
-          </TableBody>
-        </Table>
+            </TableHeader>
+            <TableBody>
+              {displayedContestants.map((contestant, index) => (
+                <TableRow
+                  key={contestant.id}
+                  className="border-b hover:bg-gray-200 transition-all duration-200"
+                >
+                  <TableCell className="font-semibold text-lg lg:text-xl text-center">
+                    <span className="bg-yellow-500 text-white px-4 py-2 rounded-full">
+                      {index + 1 + (currentPage - 1) * ITEMS_PER_PAGE}
+                    </span>
+                  </TableCell>
+                  <TableCell className="flex justify-center items-center">
+                    <Image
+                      src={contestant.image}
+                      alt={contestant.name}
+                      className="rounded-full w-12 h-12 md:w-16 md:h-16 lg:w-24 lg:h-24 object-cover"
+                    />
+                  </TableCell>
+                  <TableCell className="font-semibold text-lg lg:text-xl text-center">
+                    {contestant.name}
+                  </TableCell>
+                  <TableCell className="text-lg lg:text-xl text-center">
+                    {contestant.category}
+                  </TableCell>
+                  <TableCell className="text-center text-lg lg:text-xl">
+                    {contestant.votes}
+                  </TableCell>
+                  <TableCell className="text-center text-lg lg:text-xl">
+                    ${contestant.moneySpent}
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+          <div className="flex gap-4 mt-6 w-full justify-center">
+            <Button
+            className="bg-white border-yellow-500 border-2 text-yellow-500 px-4 py-2 rounded-md hover:bg-yellow-500 hover:text-white transition-all duration-200"
+              onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+              disabled={currentPage === 1}
+            >
+              Previous
+            </Button>
+            <span className="text-lg font-medium text-yellow-500">Page {currentPage} of {totalPages}</span>
+            <Button
+            className="bg-white border-yellow-500 border-2 text-yellow-500 px-4 py-2 rounded-md hover:bg-yellow-500 hover:text-white transition-all duration-200"
+              onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
+              disabled={currentPage === totalPages}
+            >
+              Next
+            </Button>
+          </div>
+        </div>
       </div>
-    </div>
-  );
-};
-
-export default PageantLeaderboard;
+    );
+  };
+  
+  export default PageantLeaderboard;
