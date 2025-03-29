@@ -11,12 +11,11 @@ export default function Home() {
   const searchInputRef = useRef<HTMLInputElement>(null); // Ensure the correct type
 
   return (
-    <AuroraBackground>
-      <div className="min-h-screen w-full overflow-hidden">
+
+      <div className="min-h-screen w-full overflow-hidden  bg-gradient-to-b from-white to-yellow-200">
         <LandingPage scrollToCandidate={() => searchInputRef.current?.scrollIntoView({ behavior: "smooth" })} />
         <Search ref={searchInputRef} setSearchTerm={setSearchTerm} />
         <CandidateList searchTerm={searchTerm} />
       </div>
-    </AuroraBackground>
   );
 }

@@ -28,7 +28,7 @@ const CandidateList: React.FC<CandidateListProps> = ({ searchTerm }) => {
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 w-full max-w-[85%]">
         {filteredCandidates.map((candidate) => (
           <Link
-            href={`/candidates/${candidate.id}`}
+            href={`/contestants/${candidate.id}`}
             key={candidate.id}
             className="relative group block p-2 w-full h-fit"
             onMouseEnter={() => setHoveredIndex(candidate.id)}
