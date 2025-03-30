@@ -92,7 +92,7 @@ import Image, { StaticImageData } from "next/image";
 
 interface CandidateProps {
   name: string;
-  image: StaticImageData;
+  image: string;
   number: number;
   age: number;
 }
@@ -114,6 +114,8 @@ const CandidateCard: React.FC<CandidateProps> = ({ name, image, number }) => {
         <Image
           src={image}
           alt={name}
+          width={300}
+          height={400}
           className="object-cover w-full md:h-72 xl:h-72 rounded-t-2xl"
         />
 
