@@ -6,6 +6,7 @@ import Search from "@/components/Search";
 
 
 import { useRef, useState } from "react";
+import { Toaster } from "react-hot-toast";
 
 export default function Home() {
   const [searchTerm, setSearchTerm] = useState<string>("");
@@ -13,6 +14,7 @@ export default function Home() {
 
   return (
     <>
+    <Toaster position="top-center"/>
     
       <LandingPage
         scrollToCandidate={() =>

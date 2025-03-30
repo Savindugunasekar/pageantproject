@@ -2,10 +2,107 @@
 
 import Image from "next/image";
 import { useState, useEffect } from "react";
+import toast from "react-hot-toast";
+import Script from "next/script";
+import { useRouter } from "next/navigation";
+import md5 from "crypto-js/md5";
+
+interface Payment {
+  sandbox: boolean;
+  merchant_id: string;
+  return_url: string;
+  cancel_url: string;
+  notify_url: string;
+  order_id: string;
+  items: string;
+  currency: string;
+  amount: number;
+  first_name: string;
+  last_name: string;
+  email: string;
+  phone: string;
+  address: string;
+  city: string;
+  country: string;
+  hash: string;
+}
 
 const ContestantPage = () => {
+  const [loading, setLoading] = useState(false);
+  const [payHereLoaded, setPayHereLoaded] = useState(false);
+  const router = useRouter();
+
+  useEffect(() => {
+    const loadPayHereScript = () => {
+      if (typeof window !== "undefined" && !window.payhere) {
+        const script = document.createElement("script");
+        script.src = "https://www.payhere.lk/lib/payhere.js";
+        script.async = true;
+        script.onload = () => setPayHereLoaded(true);
+        document.body.appendChild(script);
+      }
+    };
+
+    loadPayHereScript();
+  }, []);
+
+  // Function to generate MD5 hash and return uppercase version
+  const generateHash = (merchant_id: string, order_id: string, amount: number, currency: string, merchant_secret: string) => {
+    const hashedSecret = md5(merchant_secret).toString().toUpperCase();
+    const amountFormatted = parseFloat(amount.toFixed(2)).toLocaleString("en-US", { minimumFractionDigits: 2 }).replace(/,/g, "");
+    return md5(merchant_id + order_id + amountFormatted + currency + hashedSecret).toString().toUpperCase();
+  };
+
+  const handlePayment = (packageType: string, votes: number, price: number) => {
+    if (!payHereLoaded) {
+      toast.error("Payment system is still loading. Please try again.");
+      return;
+    }
+
+    setLoading(true);
+
+    const merchant_id = process.env.NEXT_PUBLIC_MERCHANT_ID!;
+    // Replace with your actual PayHere Merchant ID
+    const order_id = `ORDER_${Date.now()}`;
+    const amount = price;
+    const currency = "LKR";
+    const merchant_secret = process.env.NEXT_PUBLIC_MERCHANT_SECRET!; // Replace with your actual PayHere Merchant Secret
+
+    // Generate the hash
+    const hash = generateHash(merchant_id, order_id, amount, currency, merchant_secret);
+
+    const payment: Payment = {
+      sandbox: true, // Use `false` for production
+      merchant_id,
+      return_url: "http://localhost:3000/payment-success", // Replace with your success URL
+      cancel_url: "http://localhost:3000/payment-cancel", // Replace with your cancel URL
+      notify_url: "http://localhost:3000/api/payhere-webhook", // Replace with your webhook URL
+      order_id,
+      items: packageType,
+      currency,
+      amount,
+      first_name: "John", // Replace with real user data
+      last_name: "Doe",
+      email: "johndoe@example.com",
+      phone: "0771234567",
+      address: "Colombo",
+      city: "Colombo",
+      country: "Sri Lanka",
+      hash, // Include the generated hash in the payment object
+    };
+
+    if (typeof window !== "undefined" && window.payhere) {
+      window.payhere.startPayment(payment);
+    } else {
+      toast.error("Payment system not available.");
+    }
+
+    setLoading(false);
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-white to-yellow-200  bg-fixed ">
+      <Script type="text/javascript" src="https://www.payhere.lk/lib/payhere.js" strategy="afterInteractive" />
       <div className="flex justify-center pt-20">
         <div className="flex justify-center lg:w-1/2 items-center">
           <Image
@@ -17,8 +114,8 @@ const ContestantPage = () => {
           />
         </div>
       </div>
-      <div className=" flex justify-center items-center p-4 ">
-        <div className="max-w-6xl w-full p-6 lg:flex ">
+      <div className="flex justify-center items-center p-4">
+        <div className="max-w-6xl w-full p-6 lg:flex">
           <div className="flex justify-center items-end lg:w-1/2">
             <Image
               src="/contestant-image.jpg" // Replace with actual image path
@@ -29,7 +126,6 @@ const ContestantPage = () => {
             />
           </div>
           <div className="lg:w-1/2 lg:pl-6 text-center lg:text-left mt-4">
-            {/* <div className="md:w-1/2 md:pl-6 text-center md:text-left mt-6 md:mt-0"> */}
             <h1 className="text-4xl font-bold">Sophia Martinez</h1>
             <p className="text-gray-600 font-semibold">
               Contestant No: <span className="font-bold">#C102</span>
@@ -42,29 +138,12 @@ const ContestantPage = () => {
             <h2 className="mt-6 text-lg font-semibold text-yellow-600">
               Select Your Package
             </h2>
-            {/* <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
-              <div className="bg-gradient-to-r from-black to-yellow-600 text-white rounded-4xl px-6 py-4  items-center shadow-lg ">
-                <div className="text-left ">
-                  <p className="font-semibold text-sm">Gold Package</p>
-                  <p className="text-2xl font-bold">50 Votes</p>
-                </div>
-                <p className="text-xl text-right font-bold ">$50</p>
-              </div>
-              <div className="bg-gray-800 text-white rounded-lg p-4 flex-1 text-center">
-                <p className="font-semibold md:text-left">Silver Package</p>
-                <p className="text-xl font-bold md:text-left">20 Votes</p>
-                <p className="text-lg font-bold md:text-right">$20</p>
-              </div>
-              <div className="bg-gradient-to-r from-orange-500 to-orange-700 text-white rounded-lg p-4 flex-1 text-center">
-                <p className="font-semibold md:text-left">Brownse Package</p>
-                <p className="text-xl font-bold md:text-left">10 Votes</p>
-                <p className="text-lg font-bold md:text-right">$05</p>
-              </div>
-            </div> */}
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-4 w-full items-center justify-center">
               {/* Gold Package */}
-              <button className="relative bg-gradient-to-r from-black to-yellow-600 hover:bg-gradient-to-l text-white rounded-4xl px-8 py-4 shadow-lg w-full max-w-lg mx-auto transition-all duration-500 active:scale-[0.85] overflow-hidden group">
+              <button
+                onClick={() => handlePayment("gold", 50, 50)}
+                className="relative bg-gradient-to-r from-black to-yellow-600 hover:bg-gradient-to-l text-white rounded-4xl px-8 py-4 shadow-lg w-full max-w-lg mx-auto transition-all duration-500 active:scale-[0.85] overflow-hidden group">
                 <div className="absolute inset-0 bg-gradient-to-r from-yellow-600 to-black opacity-0 group-hover:opacity-100 transition-opacity duration-500 mix-blend-overlay"></div>
                 <div className="relative z-10">
                   <div className="flex flex-col text-left">
@@ -76,7 +155,9 @@ const ContestantPage = () => {
               </button>
 
               {/* Silver Package */}
-              <button className="relative bg-gradient-to-r from-gray-900 to-gray-500 hover:bg-gradient-to-l text-white rounded-4xl px-8 py-4 shadow-lg w-full max-w-lg mx-auto transition-all duration-500 active:scale-[0.85] overflow-hidden group">
+              <button
+                onClick={() => handlePayment("silver", 20, 20)}
+                className="relative bg-gradient-to-r from-gray-900 to-gray-500 hover:bg-gradient-to-l text-white rounded-4xl px-8 py-4 shadow-lg w-full max-w-lg mx-auto transition-all duration-500 active:scale-[0.85] overflow-hidden group">
                 <div className="absolute inset-0 bg-gradient-to-r from-gray-500 to-gray-900 opacity-0 group-hover:opacity-100 transition-opacity duration-500 mix-blend-overlay"></div>
                 <div className="relative z-10">
                   <div className="flex flex-col text-left">
@@ -88,7 +169,9 @@ const ContestantPage = () => {
               </button>
 
               {/* Bronze Package */}
-              <button className="relative bg-gradient-to-r from-orange-800 to-orange-500 hover:bg-gradient-to-l text-white rounded-4xl px-8 py-4 shadow-lg w-full max-w-lg mx-auto transition-all duration-500 active:scale-[0.85] overflow-hidden group">
+              <button
+                onClick={() => handlePayment("bronze", 10, 10)}
+                className="relative bg-gradient-to-r from-orange-800 to-orange-500 hover:bg-gradient-to-l text-white rounded-4xl px-8 py-4 shadow-lg w-full max-w-lg mx-auto transition-all duration-500 active:scale-[0.85] overflow-hidden group">
                 <div className="absolute inset-0 bg-gradient-to-r from-orange-500 to-orange-800 opacity-0 group-hover:opacity-100 transition-opacity duration-500 mix-blend-overlay"></div>
                 <div className="relative z-10">
                   <div className="flex flex-col text-left">
