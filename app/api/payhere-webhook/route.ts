@@ -24,18 +24,18 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Payment not completed" }, { status: 400 });
     }
 
-    const contestantId = parseInt(custom_1 as string);
-    if (isNaN(contestantId)) {
-      return NextResponse.json({ error: "Invalid contestant ID" }, { status: 400 });
-    }
+    const { ContestantId, votes, packageType } = JSON.parse(custom_1 as string);
+   
+
+
 
     const newVote = await prisma.votes.create({
       data: {
         PurchaseId: order_id as string,
         Amount: parseFloat(payhere_amount as string),
-        ContestantId: contestantId,
-        Votes:50,
-        PackageType:"Gold"
+        ContestantId: ContestantId,
+        Votes:votes,
+        PackageType:packageType
       },
     });
 

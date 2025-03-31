@@ -47,38 +47,38 @@ const ContestantPage = () => {
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-4 w-full items-center justify-center">
               <button
-                onClick={() => handlePayment(1,"gold", 50, 50)}
+                onClick={() => handlePayment(1,"gold", 50, 500)}
                 className="relative bg-gradient-to-r from-black to-yellow-600 hover:bg-gradient-to-l text-white rounded-4xl px-8 py-4 shadow-lg w-full max-w-lg mx-auto transition-all duration-500 active:scale-[0.85] overflow-hidden group"
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-yellow-600 to-black opacity-0 group-hover:opacity-100 transition-opacity duration-500 mix-blend-overlay"></div>
                 <div className="relative z-10">
                   <p className="font-semibold text-sm">Gold Package</p>
                   <p className="text-3xl font-extrabold">50 Votes</p>
-                  <p className="text-2xl font-bold text-right">$50</p>
+                  <p className="text-2xl font-bold text-right">$500</p>
                 </div>
               </button>
 
               <button
-                onClick={() => handlePayment(1,"silver", 20, 20)}
+                onClick={() => handlePayment(1,"silver", 20, 200)}
                 className="relative bg-gradient-to-r from-gray-900 to-gray-500 hover:bg-gradient-to-l text-white rounded-4xl px-8 py-4 shadow-lg w-full max-w-lg mx-auto transition-all duration-500 active:scale-[0.85] overflow-hidden group"
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-gray-500 to-gray-900 opacity-0 group-hover:opacity-100 transition-opacity duration-500 mix-blend-overlay"></div>
                 <div className="relative z-10">
                   <p className="font-semibold text-sm">Silver Package</p>
                   <p className="text-3xl font-extrabold">20 Votes</p>
-                  <p className="text-2xl font-bold text-right">$20</p>
+                  <p className="text-2xl font-bold text-right">$200</p>
                 </div>
               </button>
 
               <button
-                onClick={() => handlePayment(1,"bronze", 10, 10)}
+                onClick={() => handlePayment(1,"bronze", 10, 100)}
                 className="relative bg-gradient-to-r from-orange-800 to-orange-500 hover:bg-gradient-to-l text-white rounded-4xl px-8 py-4 shadow-lg w-full max-w-lg mx-auto transition-all duration-500 active:scale-[0.85] overflow-hidden group"
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-orange-500 to-orange-800 opacity-0 group-hover:opacity-100 transition-opacity duration-500 mix-blend-overlay"></div>
                 <div className="relative z-10">
                   <p className="font-semibold text-sm">Bronze Package</p>
                   <p className="text-3xl font-extrabold">10 Votes</p>
-                  <p className="text-2xl font-bold text-right">$10</p>
+                  <p className="text-2xl font-bold text-right">$100</p>
                 </div>
               </button>
             </div>

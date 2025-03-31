@@ -24,7 +24,7 @@ interface Payment {
   country: string;
   hash: string;
   custom_1?: string; // ContestantId
-  custom_2?: string; // Votes count
+  
 }
 const PaymentHandler = () => {
   const [payHereLoaded, setPayHereLoaded] = useState(false);
@@ -79,8 +79,12 @@ const PaymentHandler = () => {
       city: "Colombo",
       country: "Sri Lanka",
       hash,
-      custom_1: ContestantId.toString(),
-      custom_2: votes.toString(), // Pass votes correctly
+      custom_1: JSON.stringify({
+        ContestantId,
+        votes,
+        packageType
+      }), 
+      
 
     };
 
