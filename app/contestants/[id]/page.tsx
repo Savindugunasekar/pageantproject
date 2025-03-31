@@ -47,7 +47,7 @@ const ContestantPage = () => {
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-4 w-full items-center justify-center">
               <button
-                onClick={() => handlePayment("gold", 50, 50)}
+                onClick={() => handlePayment(1,"gold", 50, 50)}
                 className="relative bg-gradient-to-r from-black to-yellow-600 hover:bg-gradient-to-l text-white rounded-4xl px-8 py-4 shadow-lg w-full max-w-lg mx-auto transition-all duration-500 active:scale-[0.85] overflow-hidden group"
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-yellow-600 to-black opacity-0 group-hover:opacity-100 transition-opacity duration-500 mix-blend-overlay"></div>
@@ -59,7 +59,7 @@ const ContestantPage = () => {
               </button>
 
               <button
-                onClick={() => handlePayment("silver", 20, 20)}
+                onClick={() => handlePayment(1,"silver", 20, 20)}
                 className="relative bg-gradient-to-r from-gray-900 to-gray-500 hover:bg-gradient-to-l text-white rounded-4xl px-8 py-4 shadow-lg w-full max-w-lg mx-auto transition-all duration-500 active:scale-[0.85] overflow-hidden group"
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-gray-500 to-gray-900 opacity-0 group-hover:opacity-100 transition-opacity duration-500 mix-blend-overlay"></div>
@@ -71,7 +71,7 @@ const ContestantPage = () => {
               </button>
 
               <button
-                onClick={() => handlePayment("bronze", 10, 10)}
+                onClick={() => handlePayment(1,"bronze", 10, 10)}
                 className="relative bg-gradient-to-r from-orange-800 to-orange-500 hover:bg-gradient-to-l text-white rounded-4xl px-8 py-4 shadow-lg w-full max-w-lg mx-auto transition-all duration-500 active:scale-[0.85] overflow-hidden group"
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-orange-500 to-orange-800 opacity-0 group-hover:opacity-100 transition-opacity duration-500 mix-blend-overlay"></div>

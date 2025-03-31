@@ -23,8 +23,9 @@ interface Payment {
   city: string;
   country: string;
   hash: string;
+  custom_1?: string; // ContestantId
+  custom_2?: string; // Votes count
 }
-
 const PaymentHandler = () => {
   const [payHereLoaded, setPayHereLoaded] = useState(false);
 
@@ -47,7 +48,7 @@ const PaymentHandler = () => {
     return md5(merchant_id + order_id + amountFormatted + currency + hashedSecret).toString().toUpperCase();
   };
 
-  const handlePayment = (packageType: string, votes: number, price: number) => {
+  const handlePayment = (ContestantId:number,packageType: string, votes: number, price: number) => {
     if (!payHereLoaded) {
       toast.error("Payment system is still loading. Please try again.");
       return;
@@ -65,7 +66,7 @@ const PaymentHandler = () => {
       merchant_id,
       return_url: "http://localhost:3000/payment-success",
       cancel_url: "http://localhost:3000/payment-cancel",
-      notify_url: "http://localhost:3000/api/payhere-webhook",
+      notify_url: "https://3afb-175-157-189-197.ngrok-free.app/api/payhere-webhook",
       order_id,
       items: packageType,
       currency,
@@ -78,6 +79,9 @@ const PaymentHandler = () => {
       city: "Colombo",
       country: "Sri Lanka",
       hash,
+      custom_1: ContestantId.toString(),
+      custom_2: votes.toString(), // Pass votes correctly
+
     };
 
     if (typeof window !== "undefined" && window.payhere) {
