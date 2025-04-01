@@ -64,9 +64,9 @@ const PaymentHandler = () => {
     const payment: Payment = {
       sandbox: true,
       merchant_id,
-      return_url: "http://localhost:3000/payment-success",
-      cancel_url: "http://localhost:3000/payment-cancel",
-      notify_url: "https://9ab7-212-104-231-233.ngrok-free.app/api/payhere-webhook",
+      return_url: `${process.env.NEXT_PUBLIC_BASE_URL}/api/payment-success`,
+      cancel_url: `${process.env.NEXT_PUBLIC_BASE_URL}/api/payhere-cancel`,
+      notify_url:`${process.env.NEXT_PUBLIC_BASE_URL}/api/payhere-webhook`,
       order_id,
       items: packageType,
       currency,
