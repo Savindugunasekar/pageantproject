@@ -4,7 +4,6 @@ import CandidateList from "@/components/CandidateList";
 import LandingPage from "@/components/LandingPage";
 import Search from "@/components/Search";
 
-
 import { useRef, useState } from "react";
 
 export default function Home() {
@@ -13,7 +12,6 @@ export default function Home() {
 
   return (
     <>
-    
       <LandingPage
         scrollToCandidate={() =>
           searchInputRef.current?.scrollIntoView({ behavior: "smooth" })
@@ -22,7 +20,7 @@ export default function Home() {
 
       <div
         className="min-h-screen w-full overflow-hidden bg-cover bg-center  bg-fixed"
-        style={{ backgroundImage: "url('/Angelina Jolie.svg')" }}
+        style={{ backgroundImage: "url('/bluebg.svg')" }}
       >
         <Search ref={searchInputRef} setSearchTerm={setSearchTerm} />
 
