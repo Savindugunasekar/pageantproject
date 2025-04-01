@@ -8,6 +8,9 @@
 // } from "../../components/ui/table";
 // //import msworld from "../../public/contestant-image-cropped.png";
 // import Image from "next/image";
+"use client"
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 // const mockData = [
 //   {
@@ -229,17 +232,30 @@
         </div>
       </div>  */
 }
-import { candidateList } from "@/public/assets/constants/candidates";
 
-// Mocked Top 10 Candidate IDs (Replace this with real data when available)
-const top10Ids = [2, 5, 8, 9, 3, 4, 1, 15, 20, 11];
-
-// Get top 10 candidates from the candidateList
-const top10Candidates = candidateList
-  .filter((candidate) => top10Ids.includes(candidate.id))
-  .slice(0, 10); // Ensure only 10 candidates
+interface Candidate {
+  id: string;
+  name: string;
+  image: string;
+}
 
 const PodiumAndTop10 = () => {
+  const [top10Candidates, setTop10Candidates] = useState<Candidate[]>([]);
+
+  useEffect(() => {
+    const fetchTopCandidates = async () => {
+      try {
+        const res = await axios.get("/api/fetchTopTen");
+        console.log("Top 10 candidates:", res.data);
+         // Adjust API route if needed
+        setTop10Candidates(res.data); // Axios returns the response data directly
+      } catch (error) {
+        console.error("Error fetching top candidates:", error);
+      }
+    };
+
+    fetchTopCandidates();
+  }, []);
   return (
     <div
       className="min-h-screen w-full overflow-hidden bg-cover bg-center bg-fixed"
