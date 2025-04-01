@@ -196,7 +196,7 @@ const LandingPage = ({
         {/* Vote Button */}
         <motion.button
           onClick={scrollToCandidate}
-          className="mt-8 lg:mt-12 px-12 py-4 text-xl lg:text-2xl font-semibold rounded-full bg-white/10 backdrop-blur-md border-2 border-yellow-600 shadow-lg text-yellow-600 transition-all duration-300 hover:bg-white/20 hover:text-yellow-400"
+          className="mt-8 lg:mt-12 px-12 py-4 text-xl lg:text-2xl font-semibold rounded-full bg-white/10 backdrop-blur-md border-2 border-white shadow-lg text-white transition-all duration-300 hover:bg-white/20 hover:text-yellow-400"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 1 }}

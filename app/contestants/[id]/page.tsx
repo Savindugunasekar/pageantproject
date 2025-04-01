@@ -280,7 +280,7 @@ const ContestantPage = () => {
                   <p className="text-2xl font-bold text-right">$10</p>
                 </div>
               </button>
-              <button className="relative bg-white/50 hover:bg-white/70 text-white group-hover:text-blue-600 border border-white group-hover:border-blue-600 rounded-4xl px-8 py-4 shadow-lg w-full max-w-lg mx-auto transition-all duration-500 active:scale-[0.85] overflow-hidden group backdrop-blur-md">
+              <button className="relative bg-white/50 hover:bg-white/70 text-white group-hover:text-blue-200 border border-white group-hover:border-blue-400 rounded-4xl px-8 py-4 shadow-lg w-full max-w-lg mx-auto transition-all duration-500 active:scale-[0.85] overflow-hidden group backdrop-blur-md">
                 <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 <div className="relative z-10">
                   <div className="flex flex-col text-left">
