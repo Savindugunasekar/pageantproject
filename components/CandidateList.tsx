@@ -138,13 +138,14 @@
 // };
 
 // export default CandidateList;
-import { candidateList } from "@/public/assets/constants/candidates";
+
 import CandidateCard from "./CandidateCard";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { cn } from "@/app/lib/utils";
 import { AnimatePresence, motion } from "framer-motion"; // Correct import
 import Footer from "./Footer";
+import axios from "axios";
 
 // Define types for the props
 interface Candidate {
@@ -159,6 +160,21 @@ interface CandidateListProps {
 }
 
 const CandidateList: React.FC<CandidateListProps> = ({ searchTerm }) => {
+
+  const [candidateList, setCandidateList] = useState<Candidate[]>([]);
+
+  useEffect(() => {
+    const fetchCandidates = async () => {
+      try {
+        const response = await axios.get("/api/fetchContestants");
+        setCandidateList(response.data); // Store data in state
+      } catch (error) {
+        console.error("Error fetching contestants:", error);
+      }
+    };
+    fetchCandidates();
+  }, []);
+
   let [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const filteredCandidates = candidateList.filter((candidate) =>
     candidate.name.toLowerCase().includes(searchTerm.toLowerCase())

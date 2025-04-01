@@ -57,7 +57,7 @@ const PaymentHandler = () => {
     const merchant_id = process.env.NEXT_PUBLIC_MERCHANT_ID!;
     const order_id = `ORDER_${Date.now()}`;
     const amount = price;
-    const currency = "LKR";
+    const currency = "USD";
     const merchant_secret = process.env.NEXT_PUBLIC_MERCHANT_SECRET!;
     const hash = generateHash(merchant_id, order_id, amount, currency, merchant_secret);
 

@@ -153,11 +153,12 @@
 "use client"; // Mark as a Client Component since we're using hooks
 import { useState, useEffect } from "react";
 import { useParams } from "next/navigation"; // Import useParams for dynamic route params
-import { candidateList } from "@/public/assets/constants/candidates"; // Import candidate data
+
 import Footer from "@/components/Footer";
 import Image from "next/image";
 import Script from "next/script";
 import PaymentHandler from "@/components/PaymentHandler";
+import axios from "axios";
 
 
   
@@ -179,10 +180,16 @@ const ContestantPage = () => {
   // Fetch contestant data based on the ID when the component mounts
   useEffect(() => {
     if (id) {
-      const contestantData = candidateList.find(
-        (candidate) => candidate.id === Number(id)
-      );
-      setContestant(contestantData || null);
+      const fetchContestant = async () => {
+        try {
+          const response = await axios.post("/api/fetchSingleContestant", { id });
+          setContestant(response.data); // Update state with fetched data
+        } catch (error) {
+          console.error("Error fetching contestant:", error);
+        }
+      };
+  
+      fetchContestant();
     }
   }, [id]);
 

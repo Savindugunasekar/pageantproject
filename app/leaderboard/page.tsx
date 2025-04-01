@@ -6,7 +6,7 @@ import {
   TableBody,
   TableCell,
 } from "../../components/ui/table";
-import msworld from "../../public/contestant-image-cropped.png";
+import msworld from "../../public/assets/images/candidates-portrait/1-p.png";
 import Image from "next/image";
 
 const mockData = [

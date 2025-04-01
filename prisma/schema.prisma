@@ -9,12 +9,11 @@ datasource db {
 
 /// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
 model Contestants {
-  id        Int     @id(map: "candidates_pkey") @default(autoincrement())
-  name      String
-  image     String
-  age       Int
-  fromwhere String
-  Votes     Votes[]
+  id     Int     @id(map: "candidates_pkey") @default(autoincrement())
+  name   String
+  image  String
+  image2 String?
+  Votes  Votes[]
 }
 
 /// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
