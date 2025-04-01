@@ -209,7 +209,7 @@ const ContestantPage = () => {
               className="rounded-2xl"
             />
           </div>
-          <div className="lg:w-1/2 lg:pl-6 text-center lg:text-left mt-4">
+          <div className="lg:w-1/2 lg:pl-6 text-center lg:text-left mt-4 bg-white/30 backdrop-blur-lg border border-white/20 rounded-3xl p-6 shadow-lg">
             <h1 className="text-4xl font-bold">{contestant.name}</h1>
             <p className="text-gray-600 font-semibold">
               Contestant No: <span className="font-bold">#{contestant.id}</span>
@@ -248,47 +248,59 @@ const ContestantPage = () => {
                   <div className="flex flex-col text-left">
                     <p className="text-3xl font-extrabold">200 Votes</p>
                   </div>
-                  <p className="text-2xl font-bold text-right">$65</p>
+                  <p className="text-2xl font-bold text-right ">$65</p>
                 </div>
               </button>
 
               {/* Additional Packages */}
-              <button className="relative bg-gradient-to-r from-orange-800 to-orange-500 hover:bg-gradient-to-l text-white rounded-4xl px-8 py-4 shadow-lg w-full max-w-lg mx-auto transition-all duration-500 active:scale-[0.85] overflow-hidden group">
-                <div className="absolute inset-0 bg-gradient-to-r from-orange-500 to-orange-800 opacity-0 group-hover:opacity-100 transition-opacity duration-500 mix-blend-overlay"></div>
+              <button className="relative bg-white/50 hover:bg-white/70 text-blue-100 group-hover:text-blue-300 border border-white group-hover:border-blue-400 rounded-4xl px-8 py-4 shadow-lg w-full max-w-lg mx-auto transition-all duration-500 active:scale-[0.85] overflow-hidden group backdrop-blur-md">
+                <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 <div className="relative z-10">
                   <div className="flex flex-col text-left">
-                    <p className="text-3xl font-extrabold">100 Votes</p>
+                    <p className="text-3xl font-extrabold text-gray-700 ">
+                      100 Votes
+                    </p>
                   </div>
-                  <p className="text-2xl font-bold text-right">$35</p>
-                </div>
-              </button>
-              <button className="relative bg-gradient-to-r from-orange-800 to-orange-500 hover:bg-gradient-to-l text-white rounded-4xl px-8 py-4 shadow-lg w-full max-w-lg mx-auto transition-all duration-500 active:scale-[0.85] overflow-hidden group">
-                <div className="absolute inset-0 bg-gradient-to-r from-orange-500 to-orange-800 opacity-0 group-hover:opacity-100 transition-opacity duration-500 mix-blend-overlay"></div>
-                <div className="relative z-10">
-                  <div className="flex flex-col text-left">
-                    <p className="text-3xl font-extrabold">50 Votes</p>
-                  </div>
-                  <p className="text-2xl font-bold text-right">$20</p>
-                </div>
-              </button>
-              <button className="relative bg-gradient-to-r from-orange-800 to-orange-500 hover:bg-gradient-to-l text-white rounded-4xl px-8 py-4 shadow-lg w-full max-w-lg mx-auto transition-all duration-500 active:scale-[0.85] overflow-hidden group">
-                <div className="absolute inset-0 bg-gradient-to-r from-orange-500 to-orange-800 opacity-0 group-hover:opacity-100 transition-opacity duration-500 mix-blend-overlay"></div>
-                <div className="relative z-10">
-                  <div className="flex flex-col text-left">
-                    <p className="text-3xl font-extrabold">25 Votes</p>
-                  </div>
-                  <p className="text-2xl font-bold text-right">$10</p>
+                  <p className="text-2xl font-bold text-right  text-gray-700">
+                    $35
+                  </p>
                 </div>
               </button>
               <button className="relative bg-white/50 hover:bg-white/70 text-blue-100 group-hover:text-blue-300 border border-white group-hover:border-blue-400 rounded-4xl px-8 py-4 shadow-lg w-full max-w-lg mx-auto transition-all duration-500 active:scale-[0.85] overflow-hidden group backdrop-blur-md">
                 <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 <div className="relative z-10">
                   <div className="flex flex-col text-left">
-                    <p className="text-3xl font-extrabold text-blue-200">
+                    <p className="text-3xl font-extrabold text-gray-700">
+                      50 Votes
+                    </p>
+                  </div>
+                  <p className="text-2xl font-bold text-right  text-gray-700">
+                    $20
+                  </p>
+                </div>
+              </button>
+              <button className="relative bg-white/50 hover:bg-white/70 text-blue-100 group-hover:text-blue-300 border border-white group-hover:border-blue-400 rounded-4xl px-8 py-4 shadow-lg w-full max-w-lg mx-auto transition-all duration-500 active:scale-[0.85] overflow-hidden group backdrop-blur-md">
+                <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div className="relative z-10">
+                  <div className="flex flex-col text-left">
+                    <p className="text-3xl font-extrabold text-gray-700">
+                      25 Votes
+                    </p>
+                  </div>
+                  <p className="text-2xl font-bold text-right  text-gray-700">
+                    $10
+                  </p>
+                </div>
+              </button>
+              <button className="relative bg-white/50 hover:bg-white/70 text-blue-100 group-hover:text-blue-300 border border-white group-hover:border-blue-400 rounded-4xl px-8 py-4 shadow-lg w-full max-w-lg mx-auto transition-all duration-500 active:scale-[0.85] overflow-hidden group backdrop-blur-md">
+                <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div className="relative z-10">
+                  <div className="flex flex-col text-left">
+                    <p className="text-3xl font-extrabold text-gray-700">
                       10 Votes
                     </p>
                   </div>
-                  <p className="text-2xl font-bold text-right text-blue-200">
+                  <p className="text-2xl font-bold text-right text-gray-700">
                     $5
                   </p>
                 </div>
