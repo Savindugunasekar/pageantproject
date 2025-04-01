@@ -66,7 +66,7 @@ const PaymentHandler = () => {
       merchant_id,
       return_url: "http://localhost:3000/payment-success",
       cancel_url: "http://localhost:3000/payment-cancel",
-      notify_url: "https://3afb-175-157-189-197.ngrok-free.app/api/payhere-webhook",
+      notify_url: "https://9ab7-212-104-231-233.ngrok-free.app/api/payhere-webhook",
       order_id,
       items: packageType,
       currency,
