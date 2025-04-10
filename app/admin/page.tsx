@@ -5,7 +5,6 @@ import axios from 'axios';
 import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from '../../components/ui/table';
 import Image from 'next/image';
 
-// Define the type for contestant
 interface Contestant {
   id: string;
   name: string;
@@ -16,17 +15,16 @@ interface Contestant {
 }
 
 export default function AdminPage() {
-  const [showModal, setShowModal] = useState(true); // Always show the modal initially
+  const [showModal, setShowModal] = useState(true);
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [isVerified, setIsVerified] = useState(false);
   const [allVotes, setAllVotes] = useState<Contestant[]>([]);
 
-  // Fetch all votes data once the password is verified
   const fetchAllVotes = async () => {
     try {
       const res = await axios.get('/api/fetchAllVotes');
-      setAllVotes(res.data); // Axios returns the response data directly
+      setAllVotes(res.data);
     } catch (error) {
       console.error('Error fetching leaderboard data:', error);
     }
@@ -40,7 +38,7 @@ export default function AdminPage() {
       if (res.data.success) {
         setShowModal(false);
         setIsVerified(true);
-        fetchAllVotes(); // Fetch leaderboard data
+        fetchAllVotes();
       } else {
         setError('Invalid password');
       }
@@ -52,34 +50,37 @@ export default function AdminPage() {
   return (
     <div>
       {showModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+        <div  className="min-h-screen inset-0 flex justify-center items-center z-50 w-full overflow-hidden bg-cover bg-center bg-fixed"
+        style={{ backgroundImage: "url('/bluebg.svg')" }}>
           <form
             onSubmit={handleSubmit}
-            className="bg-white p-6 rounded shadow-md flex flex-col gap-4"
+            className="bg-white p-8 rounded-lg shadow-lg flex flex-col gap-6 max-w-md w-full"
           >
-            <h2 className="text-xl font-semibold">Admin Access</h2>
+            <h2 className="text-2xl font-semibold text-blue-600">Admin Access</h2>
             <input
               type="password"
               placeholder="Enter admin password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="border p-2 rounded"
+              className="border p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
             {error && <p className="text-red-500">{error}</p>}
-            <button type="submit" className="bg-blue-600 text-white py-2 rounded">
+            <button type="submit" className="bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition-colors">
               Submit
             </button>
           </form>
         </div>
       )}
 
-      {/* Page content, hidden until verified */}
       {isVerified ? (
-        <div className="min-h-screen w-full bg-gradient-to-b from-white to-yellow-200 px-6 flex justify-center">
-          <div className="w-full lg:max-w-[85%] my-36">
-            <Table className="bg-white shadow-lg rounded-2xl overflow-hidden mb-10">
+        <div
+          className="min-h-screen w-full overflow-hidden bg-cover bg-center bg-fixed"
+          style={{ backgroundImage: "url('/bluebg.svg')" }}
+        >
+          <div className="w-full lg:max-w-[85%] my-36 mx-auto">
+            <Table className="bg-white  shadow-lg rounded-2xl overflow-hidden mb-10">
               <TableHeader>
-                <TableRow className="bg-yellow-500 text-white text-lg">
+                <TableRow className="bg-blue-600 text-white text-lg">
                   <TableHead className="text-center">Position</TableHead>
                   <TableHead className="text-center">Image</TableHead>
                   <TableHead className="text-center">Name</TableHead>
@@ -91,10 +92,10 @@ export default function AdminPage() {
                 {allVotes.map((contestant, index) => (
                   <TableRow
                     key={contestant.id}
-                    className="border-b hover:bg-gray-200 transition-all duration-200"
+                    className="bg-white bg-opacity-50 hover:bg-opacity-100 transition-all duration-200 border-b"
                   >
                     <TableCell className="font-semibold text-lg lg:text-xl text-center">
-                      <span className="bg-yellow-500 text-white px-4 py-2 rounded-full">
+                      <span className="bg-blue-600 text-white px-4 py-2 rounded-full">
                         {index + 1}
                       </span>
                     </TableCell>
