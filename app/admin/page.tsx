@@ -125,7 +125,7 @@ export default function AdminPage() {
           </div>
         </div>
       ) : (
-        <div className="text-center mt-10 text-gray-500">Authenticating...</div>
+        <></>
       )}
     </div>
   );
