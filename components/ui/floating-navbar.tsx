@@ -71,7 +71,7 @@ export const FloatingNav = ({
         <Link
           key={`link=${idx}`}
           href={navItem.link}
-          className="relative items-center flex space-x-1 text-[#277698] text-lg hover:text-slate-600 transition-all duration-300"
+          className="relative items-center flex space-x-1 text-[#7db6ce] text-lg hover:text-slate-200 transition-all duration-300"
         >
           <span className="sm:block">{navItem.name}</span>
         </Link>
