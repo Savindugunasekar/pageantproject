@@ -1,9 +1,16 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import axios from 'axios';
-import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from '../../components/ui/table';
-import Image from 'next/image';
+import { useState } from "react";
+import axios from "axios";
+import {
+  Table,
+  TableHeader,
+  TableRow,
+  TableHead,
+  TableBody,
+  TableCell,
+} from "../../components/ui/table";
+import Image from "next/image";
 
 interface Contestant {
   id: string;
@@ -16,17 +23,17 @@ interface Contestant {
 
 export default function AdminPage() {
   const [showModal, setShowModal] = useState(true);
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
   const [isVerified, setIsVerified] = useState(false);
   const [allVotes, setAllVotes] = useState<Contestant[]>([]);
 
   const fetchAllVotes = async () => {
     try {
-      const res = await axios.get('/api/fetchAllVotes');
+      const res = await axios.get("/api/fetchAllVotes");
       setAllVotes(res.data);
     } catch (error) {
-      console.error('Error fetching leaderboard data:', error);
+      console.error("Error fetching leaderboard data:", error);
     }
   };
 
@@ -34,29 +41,33 @@ export default function AdminPage() {
     e.preventDefault();
 
     try {
-      const res = await axios.post('/api/adminAuth', { password });
+      const res = await axios.post("/api/adminAuth", { password });
       if (res.data.success) {
         setShowModal(false);
         setIsVerified(true);
         fetchAllVotes();
       } else {
-        setError('Invalid password');
+        setError("Invalid password");
       }
     } catch (err) {
-      setError('Something went wrong');
+      setError("Something went wrong");
     }
   };
 
   return (
     <div>
       {showModal && (
-        <div  className="min-h-screen inset-0 flex justify-center items-center z-50 w-full overflow-hidden bg-cover bg-center bg-fixed"
-        style={{ backgroundImage: "url('/bluebg.svg')" }}>
+        <div
+          className="min-h-screen inset-0 flex justify-center items-center z-50 w-full overflow-hidden bg-cover bg-center bg-fixed"
+          style={{ backgroundImage: "url('/bluebg.svg')" }}
+        >
           <form
             onSubmit={handleSubmit}
             className="bg-white p-8 rounded-lg shadow-lg flex flex-col gap-6 max-w-md w-full"
           >
-            <h2 className="text-2xl font-semibold text-blue-600">Admin Access</h2>
+            <h2 className="text-2xl font-semibold text-blue-600">
+              Admin Access
+            </h2>
             <input
               type="password"
               placeholder="Enter admin password"
@@ -65,7 +76,10 @@ export default function AdminPage() {
               className="border p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
             {error && <p className="text-red-500">{error}</p>}
-            <button type="submit" className="bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition-colors">
+            <button
+              type="submit"
+              className="bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition-colors"
+            >
               Submit
             </button>
           </form>
@@ -80,7 +94,7 @@ export default function AdminPage() {
           <div className="w-full lg:max-w-[85%] my-36 mx-auto">
             <Table className="bg-white  shadow-lg rounded-2xl overflow-hidden mb-10">
               <TableHeader>
-                <TableRow className="bg-blue-600 text-white text-lg">
+                <TableRow className="bg-blue-300 text-white text-lg">
                   <TableHead className="text-center">Position</TableHead>
                   <TableHead className="text-center">Image</TableHead>
                   <TableHead className="text-center">Name</TableHead>
@@ -95,7 +109,7 @@ export default function AdminPage() {
                     className="bg-white bg-opacity-50 hover:bg-opacity-100 transition-all duration-200 border-b"
                   >
                     <TableCell className="font-semibold text-lg lg:text-xl text-center">
-                      <span className="bg-blue-600 text-white px-4 py-2 rounded-full">
+                      <span className="bg-blue-500 text-white px-4 py-2 rounded-full">
                         {index + 1}
                       </span>
                     </TableCell>
