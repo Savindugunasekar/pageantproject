@@ -35,3 +35,9 @@ model Votes {
 
   @@id([PurchaseId, created_at, ContestantId, Votes, Amount, PackageType])
 }
+
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model User {
+  id       BigInt  @id @default(autoincrement())
+  password String?
+}
