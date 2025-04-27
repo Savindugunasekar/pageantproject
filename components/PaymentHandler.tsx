@@ -1,101 +1,49 @@
-// components/PaymentHandler.tsx
 "use client";
 
-import { useState, useEffect } from "react";
-import toast from "react-hot-toast";
-import md5 from "crypto-js/md5";
+import { useState } from "react";
+import axios from "axios";
 
-interface Payment {
-  sandbox: boolean;
-  merchant_id: string;
-  return_url: string;
-  cancel_url: string;
-  notify_url: string;
-  order_id: string;
-  items: string;
-  currency: string;
-  amount: number;
-  first_name: string;
-  last_name: string;
-  email: string;
-  phone: string;
-  address: string;
-  city: string;
-  country: string;
-  hash: string;
-  custom_1?: string; // ContestantId
-  
-}
 const PaymentHandler = () => {
-  const [payHereLoaded, setPayHereLoaded] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
-  useEffect(() => {
-    const loadPayHereScript = () => {
-      if (typeof window !== "undefined" && !window.payhere) {
-        const script = document.createElement("script");
-        script.src = "https://www.payhere.lk/lib/payhere.js";
-        script.async = true;
-        script.onload = () => setPayHereLoaded(true);
-        document.body.appendChild(script);
-      }
-    };
-    loadPayHereScript();
-  }, []);
+  const handlePayment = async (contestantId, packageType, votes, price) => {
+    try {
+      setIsLoading(true);
 
-  const generateHash = (merchant_id: string, order_id: string, amount: number, currency: string, merchant_secret: string) => {
-    const hashedSecret = md5(merchant_secret).toString().toUpperCase();
-    const amountFormatted = parseFloat(amount.toFixed(2)).toLocaleString("en-US", { minimumFractionDigits: 2 }).replace(/,/g, "");
-    return md5(merchant_id + order_id + amountFormatted + currency + hashedSecret).toString().toUpperCase();
-  };
+      const response = await axios.post(
+        "https://api.uat.geniebiz.lk/public/v2/transactions",
+        {
+          "amount": 400,
+          "currency": "LKR",
+          "localId": "Test dialog txn local id",
+          "tokenizationDetails": {
+            "tokenize": false,
+            "recurringFrequency": "UNSCHEDULED",
+            "paymentType": "UNSCHEDULED"
+          
+        }},
+        {
+          headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json",
+            "Authorization":
+              'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHBJZCI6IjM2YmFmY2U3LWEyMDEtNDI5Yi1hOWUyLWM1Yjc4NTQ2Njc3YyIsImNvbXBhbnlJZCI6IjYzOTdmMzlkZjA3ZmJhMDAwODQyYTkwYiIsImlhdCI6MTY3MDkwMjY4NSwiZXhwIjo0ODI2NTc2Mjg1fQ.fy12dgFhA3iB_RCjD7y8j5HClNRZUiBZgAg-QzFpxaE',
+          },
+        }
+      );
 
-  const handlePayment = (ContestantId:number,packageType: string, votes: number, price: number) => {
-    if (!payHereLoaded) {
-      toast.error("Payment system is still loading. Please try again.");
-      return;
-    }
-
-    const merchant_id = process.env.NEXT_PUBLIC_MERCHANT_ID!;
-    const order_id = `ORDER_${Date.now()}`;
-    const amount = price;
-    const currency = "USD";
-    const merchant_secret = process.env.NEXT_PUBLIC_MERCHANT_SECRET!;
-    const hash = generateHash(merchant_id, order_id, amount, currency, merchant_secret);
-
-    const payment: Payment = {
-      sandbox: true,
-      merchant_id,
-      return_url: `${process.env.NEXT_PUBLIC_BASE_URL}/api/payment-success`,
-      cancel_url: `${process.env.NEXT_PUBLIC_BASE_URL}/api/payhere-cancel`,
-      notify_url:`${process.env.NEXT_PUBLIC_BASE_URL}/api/payhere-webhook`,
-      order_id,
-      items: packageType,
-      currency,
-      amount,
-      first_name: "John",
-      last_name: "Doe",
-      email: "johndoe@example.com",
-      phone: "0771234567",
-      address: "Colombo",
-      city: "Colombo",
-      country: "Sri Lanka",
-      hash,
-      custom_1: JSON.stringify({
-        ContestantId,
-        votes,
-        packageType
-      }), 
+      console.log("Payment response:", response.data);
       
 
-    };
-
-    if (typeof window !== "undefined" && window.payhere) {
-      window.payhere.startPayment(payment);
-    } else {
-      toast.error("Payment system not available.");
+      // Handle the response if needed
+    } catch (error) {
+      console.error("Payment failed:", error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
-  return { handlePayment };
+  return { handlePayment, isLoading };
 };
 
 export default PaymentHandler;
