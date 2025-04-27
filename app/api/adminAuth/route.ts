@@ -5,12 +5,12 @@ import bcrypt from 'bcrypt';
 export async function POST(req: Request) {
   const { password } = await req.json(); // Extract password from request body
 
-  const user = await prisma.User.findUnique({
+  const user = await prisma.user.findUnique({
     select: { password: true },
     where: { id: 1 },
   });
 
-  if (!user) {
+  if (!user || !user.password) {
     return NextResponse.json({ success: false, message: 'User not found' }, { status: 404 });
   }
 
