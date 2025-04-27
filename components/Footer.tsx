@@ -4,7 +4,7 @@ const Footer: React.FC = () => {
   return (
     <footer className="bg-transparent">
       <div className="w-full max-w-screen-xl mx-auto p-6 md:py-10 text-center">
-        <hr className="my-6 border-gray-300 sm:mx-auto lg:my-8 " />
+        <hr className="my-7 border-gray-300 sm:mx-auto lg:my-8 " />
         <div className="sm:flex sm:items-center sm:justify-between ">
           <Link href="/" className="flex items-center mb-6 sm:mb-0 space-x-3">
             <img
