@@ -23,11 +23,6 @@ const PaymentHandler = () => {
         currency: "LKR",
         redirectUrl, // Use the constructed redirect URL
         localId: "Test dialog txn local id",
-        tokenizationDetails: {
-          tokenize: false,
-          recurringFrequency: "UNSCHEDULED",
-          paymentType: "UNSCHEDULED",
-        },
       });
 
       const paymentUrl = response.data?.url;
