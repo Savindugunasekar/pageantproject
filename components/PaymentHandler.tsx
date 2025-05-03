@@ -16,7 +16,7 @@ const PaymentHandler = () => {
       setIsLoading(true);
 
      
-     await axios.post("/api/geniebiz-payment", {
+     const response = await axios.post("/api/geniebiz-payment", {
         "amount": 600.00,
         "currency": "LKR",
         "localId": "Test dialog txn local id",
@@ -27,7 +27,13 @@ const PaymentHandler = () => {
       }
       });
 
-   
+      const paymentUrl = response.data?.url;
+
+    if (paymentUrl) {
+      window.location.href = paymentUrl; // Redirect to GenieBiz payment page
+    } else {
+      console.error("No payment URL returned from API");
+    }
 
 
 
