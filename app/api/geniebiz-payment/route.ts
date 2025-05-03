@@ -9,7 +9,7 @@ export async function POST(req: NextRequest) {
     
 
     const response = await axios.post(
-      "https://api.geniebiz.lk/public/v2/transactions",
+      "https://api.uat.geniebiz.lk/public/v2/transactions",
       body,
       {
         headers: {
