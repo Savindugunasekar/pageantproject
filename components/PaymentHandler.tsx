@@ -7,7 +7,7 @@ const PaymentHandler = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const handlePayment = async (
-    contestantId: string,
+    contestantId: number,
     packageType: string,
     votes: number,
     price: number
