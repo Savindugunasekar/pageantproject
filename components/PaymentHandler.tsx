@@ -19,7 +19,7 @@ const PaymentHandler = () => {
       const redirectUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/payment-success?contestantId=${contestantId}&packageType=${packageType}&votes=${votes}&price=${price}`;
 
       const response = await axios.post("/api/geniebiz-payment", {
-        amount: price * 100 * 300,
+        amount: price ,
         currency: "LKR",
         redirectUrl, // Use the constructed redirect URL
         localId: "Test dialog txn local id",
