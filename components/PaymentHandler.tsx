@@ -14,11 +14,13 @@ const PaymentHandler = () => {
   ): Promise<void> => {
     try {
       setIsLoading(true);
+      
 
      
      const response = await axios.post("/api/geniebiz-payment", {
         "amount": 600.00,
         "currency": "LKR",
+        "redirectUrl":"https://pageantproject-b5mfi3e41-savindu-gunasekaras-projects.vercel.app/",
         "localId": "Test dialog txn local id",
         "tokenizationDetails": {
           "tokenize": false,
