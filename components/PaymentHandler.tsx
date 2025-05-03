@@ -17,14 +17,14 @@ const PaymentHandler = () => {
 
      
       await axios.post("/api/geniebiz-payment", {
-        amount: price,
-        currency: "LKR",
-        localId: "Test dialog txn local id",
-        tokenizationDetails: {
-          tokenize: false,
-          recurringFrequency: "UNSCHEDULED",
-          paymentType: "UNSCHEDULED",
-        },
+        "amount": 600.00,
+        "currency": "LKR",
+        "localId": "Test dialog txn local id",
+        "tokenizationDetails": {
+          "tokenize": false,
+          "recurringFrequency": "UNSCHEDULED",
+          "paymentType": "UNSCHEDULED"
+      }
       });
 
       
