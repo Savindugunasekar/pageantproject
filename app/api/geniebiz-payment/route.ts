@@ -1,17 +1,13 @@
-// /pages/api/geniebiz-payment.ts
-
-import type { NextApiRequest, NextApiResponse } from "next";
+import { NextRequest, NextResponse } from "next/server";
 import axios from "axios";
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  if (req.method !== "POST") {
-    return res.status(405).json({ message: "Method not allowed" });
-  }
-
+export async function POST(req: NextRequest) {
   try {
+    const body = await req.json();
+
     const response = await axios.post(
       "https://api.uat.geniebiz.lk/public/v2/transactions",
-      req.body,
+      body,
       {
         headers: {
           Accept: "application/json",
@@ -22,13 +18,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       }
     );
 
-    console.log("response",response.data);
-    
-
-    return res.status(200).json(response.data);
+    return NextResponse.json(response.data);
   } catch (error: any) {
-    return res
-      .status(error.response?.status || 500)
-      .json({ error: error.message || "Internal Server Error" });
+    console.error("Payment API error:", error.message);
+    return NextResponse.json(
+      { error: error.message || "Internal Server Error" },
+      { status: error.response?.status || 500 }
+    );
   }
 }
