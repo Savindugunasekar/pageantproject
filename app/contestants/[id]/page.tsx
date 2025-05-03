@@ -111,7 +111,7 @@ const ContestantPage = () => {
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-4 w-full items-center justify-center">
               <button
-                onClick={() => handlePayment(contestant.id, "$275", 1000, 275)}
+                onClick={() => handlePayment(contestant.id, "$450", 1000, 450)}
                 className="relative bg-gradient-to-r from-black to-yellow-600 hover:bg-gradient-to-l text-white rounded-4xl px-8 py-4 shadow-lg w-full max-w-lg mx-auto transition-all duration-500 active:scale-[0.85] overflow-hidden group"
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-yellow-600 to-black opacity-0 group-hover:opacity-100 transition-opacity duration-500 mix-blend-overlay"></div>
@@ -124,7 +124,7 @@ const ContestantPage = () => {
               </button>
 
               <button
-                onClick={() => handlePayment(contestant.id, "$150", 500, 150)}
+                onClick={() => handlePayment(contestant.id, "$225", 500, 225)}
                 className="relative bg-gradient-to-r from-gray-900 to-gray-500 hover:bg-gradient-to-l text-white rounded-4xl px-8 py-4 shadow-lg w-full max-w-lg mx-auto transition-all duration-500 active:scale-[0.85] overflow-hidden group"
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-gray-500 to-gray-900 opacity-0 group-hover:opacity-100 transition-opacity duration-500 mix-blend-overlay"></div>
@@ -137,7 +137,7 @@ const ContestantPage = () => {
               </button>
 
               <button
-                onClick={() => handlePayment(contestant.id, "$65", 200, 65)}
+                onClick={() => handlePayment(contestant.id, "$90", 200, 90)}
                 className="relative bg-gradient-to-r from-orange-800 to-orange-500 hover:bg-gradient-to-l text-white rounded-4xl px-8 py-4 shadow-lg w-full max-w-lg mx-auto transition-all duration-500 active:scale-[0.85] overflow-hidden group"
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-orange-500 to-orange-800 opacity-0 group-hover:opacity-100 transition-opacity duration-500 mix-blend-overlay"></div>
@@ -151,7 +151,7 @@ const ContestantPage = () => {
 
               {/* Additional Packages */}
               <button
-                onClick={() => handlePayment(contestant.id, "$35", 100, 35)}
+                onClick={() => handlePayment(contestant.id, "$45", 100, 45)}
                 className="relative bg-white/50 hover:bg-white/70 text-blue-100 group-hover:text-blue-300 border border-white group-hover:border-blue-400 rounded-4xl px-8 py-4 shadow-lg w-full max-w-lg mx-auto transition-all duration-500 active:scale-[0.85] overflow-hidden group backdrop-blur-md"
               >
                 <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
@@ -167,7 +167,7 @@ const ContestantPage = () => {
                 </div>
               </button>
               <button
-                onClick={() => handlePayment(contestant.id, "$20", 50, 20)}
+                onClick={() => handlePayment(contestant.id, "$22.50", 50, 22.50)}
                 className="relative bg-white/50 hover:bg-white/70 text-blue-100 group-hover:text-blue-300 border border-white group-hover:border-blue-400 rounded-4xl px-8 py-4 shadow-lg w-full max-w-lg mx-auto transition-all duration-500 active:scale-[0.85] overflow-hidden group backdrop-blur-md"
               >
                 <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
@@ -183,7 +183,7 @@ const ContestantPage = () => {
                 </div>
               </button>
               <button
-                onClick={() => handlePayment(contestant.id, "$10", 25, 10)}
+                onClick={() => handlePayment(contestant.id, "$11.25", 25, 11.25)}
                 className="relative bg-white/50 hover:bg-white/70 text-blue-100 group-hover:text-blue-300 border border-white group-hover:border-blue-400 rounded-4xl px-8 py-4 shadow-lg w-full max-w-lg mx-auto transition-all duration-500 active:scale-[0.85] overflow-hidden group backdrop-blur-md"
               >
                 <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
@@ -199,7 +199,7 @@ const ContestantPage = () => {
                 </div>
               </button>
               <button
-                onClick={() => handlePayment(contestant.id, "$5", 10, 5)}
+                onClick={() => handlePayment(contestant.id, "$4.5", 10, 4.5)}
                 className="relative bg-white/50 hover:bg-white/70 text-blue-100 group-hover:text-blue-300 border border-white group-hover:border-blue-400 rounded-4xl px-8 py-4 shadow-lg w-full max-w-lg mx-auto transition-all duration-500 active:scale-[0.85] overflow-hidden group backdrop-blur-md"
               >
                 <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
