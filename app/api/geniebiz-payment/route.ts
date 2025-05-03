@@ -20,6 +20,13 @@ export async function POST(req: NextRequest) {
         },
       }
     );
+    const paymentUrl = response.data?.url;
+
+    if (paymentUrl) {
+      window.location.href = paymentUrl; // Redirect to GenieBiz payment page
+    } else {
+      console.error("No payment URL returned from API");
+    }
 
     return NextResponse.json(response.data);
   } catch (error: any) {
