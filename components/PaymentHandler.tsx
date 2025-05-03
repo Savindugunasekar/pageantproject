@@ -16,7 +16,7 @@ const PaymentHandler = () => {
       setIsLoading(true);
 
       // Construct the redirect URL with query parameters
-      const redirectUrl = `https://pageantproject-l96962xp1-savindu-gunasekaras-projects.vercel.app/payment-success?contestantId=${contestantId}&packageType=${packageType}&votes=${votes}&price=${price}`;
+      const redirectUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/payment-success?contestantId=${contestantId}&packageType=${packageType}&votes=${votes}&price=${price}`;
 
       const response = await axios.post("/api/geniebiz-payment", {
         amount: price * 100,
