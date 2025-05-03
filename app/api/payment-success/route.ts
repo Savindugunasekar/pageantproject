@@ -18,10 +18,10 @@ export async function POST(req: NextRequest) {
     // Create a new vote record in the database
     const newVote = await prisma.votes.create({
       data: {
-        PurchaseId: "GenerateDynamicPurchaseId", // You should replace this with dynamic order ID, if applicable
+        PurchaseId: String(Date.now()), // You should replace this with dynamic order ID, if applicable
         Amount: price, // Assuming price is sent as a number (not multiplied by 100)
-        ContestantId: contestantId,
-        Votes: votes,
+        ContestantId: Number(contestantId),
+        Votes: Number(votes),
         PackageType: packageType,
       },
     });
