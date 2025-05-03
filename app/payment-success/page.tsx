@@ -40,7 +40,6 @@ const PaymentSuccess: React.FC = () => {
       console.log("Payment Success:", response.data);
       setSuccessMessage("Payment recorded successfully!");
 
-      // Wait 2 seconds, then redirect to home
       setTimeout(() => {
         window.location.href = "/";
       }, 2000);
@@ -52,30 +51,57 @@ const PaymentSuccess: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center h-screen bg-gray-100">
-      <h1 className="text-3xl font-semibold mb-6">Payment Success</h1>
-      <div className="space-y-2 mb-6">
-        <p className="text-lg">Contestant ID: {contestantId}</p>
-        <p className="text-lg">Package Type: {packageType}</p>
-        <p className="text-lg">Votes: {votes}</p>
-        <p className="text-lg">Price: {price}</p>
+    <div
+      className="min-h-screen flex items-center justify-center bg-cover bg-center bg-fixed px-6"
+      style={{ backgroundImage: "url('/bluebg.svg')" }}
+    >
+      <div className="bg-white p-8 rounded-2xl shadow-xl w-full max-w-md space-y-6 border border-blue-300">
+        <div className="text-center">
+          <h1 className="text-3xl font-bold text-blue-600 mb-2">Payment Receipt</h1>
+          <p className="text-blue-500 text-sm">Thank you for your support!</p>
+        </div>
+
+        <hr className="border-blue-200" />
+
+        <div className="text-blue-800 text-base space-y-2">
+          <div className="flex justify-between">
+            <span className="font-medium">Contestant ID:</span>
+            <span>{contestantId}</span>
+          </div>
+          <div className="flex justify-between">
+            <span className="font-medium">Package Type:</span>
+            <span>{packageType}</span>
+          </div>
+          <div className="flex justify-between">
+            <span className="font-medium">Votes:</span>
+            <span>{votes}</span>
+          </div>
+          <div className="flex justify-between">
+            <span className="font-medium">Price:</span>
+            <span>${price}</span>
+          </div>
+        </div>
+
+        <hr className="border-blue-200" />
+
+        {successMessage && (
+          <div className="bg-blue-100 border border-blue-300 text-blue-700 px-4 py-3 rounded text-sm text-center">
+            {successMessage}
+          </div>
+        )}
+
+        <button
+          onClick={handlePostPayment}
+          disabled={isLoading || !!successMessage}
+          className={`w-full py-3 text-white text-lg font-semibold rounded-lg transition-all duration-300 ${
+            isLoading || successMessage
+              ? "bg-blue-300 cursor-not-allowed"
+              : "bg-blue-600 hover:bg-blue-700"
+          }`}
+        >
+          {isLoading ? "Processing..." : "Go to Home"}
+        </button>
       </div>
-
-      {successMessage && (
-        <p className="text-green-600 font-medium mb-4">{successMessage}</p>
-      )}
-
-      <button
-        onClick={handlePostPayment}
-        disabled={isLoading || !!successMessage}
-        className={`px-6 py-2 text-white text-lg font-semibold rounded-md shadow-md transition-colors duration-300 ${
-          isLoading || successMessage
-            ? "bg-gray-400 cursor-not-allowed"
-            : "bg-green-500 hover:bg-green-600"
-        }`}
-      >
-        {isLoading ? "Processing..." : "Confirm Payment"}
-      </button>
     </div>
   );
 };
