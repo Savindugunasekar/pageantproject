@@ -14,32 +14,29 @@ const PaymentHandler = () => {
   ): Promise<void> => {
     try {
       setIsLoading(true);
-      
 
-     
-     const response = await axios.post("/api/geniebiz-payment", {
-        "amount": 600.00,
-        "currency": "LKR",
-        "redirectUrl":"https://pageantproject-b5mfi3e41-savindu-gunasekaras-projects.vercel.app/",
-        "localId": "Test dialog txn local id",
-        "tokenizationDetails": {
-          "tokenize": false,
-          "recurringFrequency": "UNSCHEDULED",
-          "paymentType": "UNSCHEDULED"
-      }
+      // Construct the redirect URL with query parameters
+      const redirectUrl = `https://pageantproject-b5mfi3e41-savindu-gunasekaras-projects.vercel.app/payment-success?contestantId=${contestantId}&packageType=${packageType}&votes=${votes}&price=${price}`;
+
+      const response = await axios.post("/api/geniebiz-payment", {
+        amount: price * 100,
+        currency: "LKR",
+        redirectUrl, // Use the constructed redirect URL
+        localId: "Test dialog txn local id",
+        tokenizationDetails: {
+          tokenize: false,
+          recurringFrequency: "UNSCHEDULED",
+          paymentType: "UNSCHEDULED",
+        },
       });
 
       const paymentUrl = response.data?.url;
 
-    if (paymentUrl) {
-      window.location.href = paymentUrl; // Redirect to GenieBiz payment page
-    } else {
-      console.error("No payment URL returned from API");
-    }
-
-
-
-      
+      if (paymentUrl) {
+        window.location.href = paymentUrl; // Redirect to GenieBiz payment page
+      } else {
+        console.error("No payment URL returned from API");
+      }
     } catch (error) {
       console.error("Payment failed:", error);
     } finally {
