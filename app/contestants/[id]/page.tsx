@@ -119,7 +119,7 @@ const ContestantPage = () => {
                   <div className="flex flex-col text-left">
                     <p className="text-3xl font-extrabold">1000 Votes</p>
                   </div>
-                  <p className="text-2xl font-bold text-right">$275</p>
+                  <p className="text-2xl font-bold text-right">$450</p>
                 </div>
               </button>
 
@@ -132,7 +132,7 @@ const ContestantPage = () => {
                   <div className="flex flex-col text-left">
                     <p className="text-3xl font-extrabold">500 Votes</p>
                   </div>
-                  <p className="text-2xl font-bold text-right">$150</p>
+                  <p className="text-2xl font-bold text-right">$225</p>
                 </div>
               </button>
 
@@ -145,7 +145,7 @@ const ContestantPage = () => {
                   <div className="flex flex-col text-left">
                     <p className="text-3xl font-extrabold">200 Votes</p>
                   </div>
-                  <p className="text-2xl font-bold text-right ">$65</p>
+                  <p className="text-2xl font-bold text-right ">$90</p>
                 </div>
               </button>
 
@@ -162,7 +162,7 @@ const ContestantPage = () => {
                     </p>
                   </div>
                   <p className="text-2xl font-bold text-right  text-gray-700">
-                    $35
+                    $45
                   </p>
                 </div>
               </button>
@@ -178,7 +178,7 @@ const ContestantPage = () => {
                     </p>
                   </div>
                   <p className="text-2xl font-bold text-right  text-gray-700">
-                    $20
+                    $22.50
                   </p>
                 </div>
               </button>
@@ -194,7 +194,7 @@ const ContestantPage = () => {
                     </p>
                   </div>
                   <p className="text-2xl font-bold text-right  text-gray-700">
-                    $10
+                    $11.25
                   </p>
                 </div>
               </button>
@@ -210,7 +210,7 @@ const ContestantPage = () => {
                     </p>
                   </div>
                   <p className="text-2xl font-bold text-right text-gray-700">
-                    $5
+                    $4.5
                   </p>
                 </div>
               </button>
