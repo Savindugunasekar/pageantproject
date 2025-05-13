@@ -10,7 +10,7 @@ const PaymentSuccess: React.FC = () => {
   const [votes, setVotes] = useState<string | null>(null);
   const [price, setPrice] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [successMessage, setSuccessMessage] = useState<string | null>(null);
+  const [isSuccess, setIsSuccess] = useState<boolean>(false);
 
   const searchParams = useSearchParams();
 
@@ -38,7 +38,7 @@ const PaymentSuccess: React.FC = () => {
       });
 
       console.log("Payment Success:", response.data);
-      setSuccessMessage("Payment recorded successfully!");
+      setIsSuccess(true);
 
       setTimeout(() => {
         window.location.href = "/";
@@ -58,7 +58,8 @@ const PaymentSuccess: React.FC = () => {
       <div className="bg-white p-8 rounded-2xl shadow-xl w-full max-w-md space-y-6 border border-blue-300">
         <div className="text-center">
           <h1 className="text-3xl font-bold text-blue-600 mb-2">Payment Receipt</h1>
-          <p className="text-blue-500 text-sm">Thank you for your support!</p>
+          {isSuccess && <p className="text-blue-500 text-md">Thank you for your support!</p>}
+          
         </div>
 
         <hr className="border-blue-200" />
@@ -84,22 +85,22 @@ const PaymentSuccess: React.FC = () => {
 
         <hr className="border-blue-200" />
 
-        {successMessage && (
-          <div className="bg-blue-100 border border-blue-300 text-blue-700 px-4 py-3 rounded text-sm text-center">
-            {successMessage}
-          </div>
-        )}
-
         <button
           onClick={handlePostPayment}
-          disabled={isLoading || !!successMessage}
+          disabled={isLoading || isSuccess}
           className={`w-full py-3 text-white text-lg font-semibold rounded-lg transition-all duration-300 ${
-            isLoading || successMessage
-              ? "bg-blue-300 cursor-not-allowed"
-              : "bg-blue-600 hover:bg-blue-700"
+            isSuccess
+              ? "bg-green-600 cursor-default"
+              : isLoading
+              ? "bg-red-300 cursor-not-allowed"
+              : "bg-red-600 hover:bg-red-700"
           }`}
         >
-          {isLoading ? "Processing..." : "Go to Home"}
+          {isSuccess
+            ? "Payment Successful"
+            : isLoading
+            ? "Processing..."
+            : "Click Here to Confirm Your Payment!"}
         </button>
       </div>
     </div>
