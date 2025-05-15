@@ -25,13 +25,16 @@ model TestTaable {
 
 /// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
 model Votes {
-  PurchaseId   String
-  created_at   DateTime    @default(now()) @db.Timestamptz(6)
-  ContestantId Int
-  Votes        BigInt
-  Amount       Decimal     @db.Decimal
-  PackageType  String
-  Contestants  Contestants @relation(fields: [ContestantId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  PurchaseId    String
+  created_at    DateTime    @default(now()) @db.Timestamptz(6)
+  ContestantId  Int
+  Votes         BigInt
+  Amount        Decimal     @db.Decimal
+  PackageType   String
+  Status        String?
+  TransactionId String?
+  LocalId       BigInt?
+  Contestants   Contestants @relation(fields: [ContestantId], references: [id], onDelete: NoAction, onUpdate: NoAction)
 
   @@id([PurchaseId, created_at, ContestantId, Votes, Amount, PackageType])
 }
