@@ -3,7 +3,7 @@ import prisma from "@/app/lib/db";
 
 export async function GET(req: NextRequest) {
   try {
-    const allVotes = await prisma.$queryRaw`
+   const allVotes = await prisma.$queryRaw`
       SELECT 
         c.id, 
         c.name, 
@@ -11,7 +11,7 @@ export async function GET(req: NextRequest) {
         COALESCE(SUM(v."Votes"), 0) AS total_votes,
         COALESCE(SUM(v."Amount"), 0) AS total_amount
       FROM "Contestants" c
-      LEFT JOIN "Votes" v ON c.id = v."ContestantId"
+      LEFT JOIN "Votes" v ON c.id = v."ContestantId" AND v."Status" = 'CONFIRMED'
       GROUP BY c.id, c.name, c.image
       ORDER BY total_votes DESC
     `;

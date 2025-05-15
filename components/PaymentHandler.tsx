@@ -15,20 +15,30 @@ const PaymentHandler = () => {
     try {
       setIsLoading(true);
 
-      // Construct the redirect URL with query parameters
-      const redirectUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/payment-success?contestantId=${contestantId}&packageType=${packageType}&votes=${votes}&price=${price}`;
+      const localId = Date.now();
 
-      const response = await axios.post("/api/geniebiz-payment", {
+      const redirectUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/payment-success?localId=${localId}`;
+
+      const genieReq = {
         amount: price * 100 * 300,
         currency: "LKR",
-        redirectUrl, // Use the constructed redirect URL
-        localId: "Test dialog txn local id",
+        redirectUrl,
+      };
+
+      // Send the full payload as a single object
+      const response = await axios.post("/api/geniebiz-payment", {
+        genieReq,
+        votes,
+        price,
+        contestantId,
+        packageType,
+        localId
       });
 
       const paymentUrl = response.data?.url;
 
       if (paymentUrl) {
-        window.location.href = paymentUrl; // Redirect to GenieBiz payment page
+        window.location.href = paymentUrl;
       } else {
         console.error("No payment URL returned from API");
       }

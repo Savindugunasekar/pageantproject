@@ -12,17 +12,9 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Missing required parameters" }, { status: 400 });
     }
 
-    const newVote = await prisma.votes.create({
-      data: {
-        PurchaseId: String(Date.now()), // Ideally, replace this with a real order ID
-        Amount: price,
-        ContestantId: Number(contestantId),
-        Votes: Number(votes),
-        PackageType: packageType,
-      },
-    });
 
-    console.log("Database updated successfully:", newVote);
+
+    console.log("Database updated successfully:");
     return NextResponse.json({ message: "Payment recorded successfully" }, { status: 200 });
   } catch (error) {
     console.error("Error recording payment:", error);
