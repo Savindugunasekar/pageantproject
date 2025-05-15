@@ -11,7 +11,7 @@ export async function GET(req: NextRequest) {
         c.image, 
         COALESCE(SUM(v."Votes"), 0) AS total_votes
       FROM "Contestants" c
-      LEFT JOIN "Votes" v ON c.id = v."ContestantId"
+      LEFT JOIN "Votes" v ON c.id = v."ContestantId" AND v."Status" = 'CONFIRMED'
       GROUP BY c.id, c.name, c.image
       ORDER BY total_votes DESC
       LIMIT 10;
